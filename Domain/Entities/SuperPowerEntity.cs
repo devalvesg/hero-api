@@ -6,5 +6,6 @@
         public bool Deleted { get; set; }
         public string SuperPower { get; set; }
         public string Description { get; set; }
+        public virtual List<HeroSuperPowerEntity> HeroSuperPowers { get; set; }
     }
 }

@@ -3,18 +3,9 @@ using Domain.Exceptions;
 
 namespace API.Middleware
 {
-    public class ExceptionHandlingMiddleware
+    public class ExceptionHandlingMiddleware(RequestDelegate _next,
+        ILogger<ExceptionHandlingMiddleware> _logger)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
-
-        public ExceptionHandlingMiddleware(RequestDelegate next,
-            ILogger<ExceptionHandlingMiddleware> logger)
-        {
-            _next = next;
-            _logger = logger;
-        }
-
         public async Task InvokeAsync(HttpContext ctx)
         {
             try
@@ -23,6 +14,7 @@ namespace API.Middleware
             }
             catch (CustomException businessException)
             {
+                _logger.LogError(businessException, "Custom exception");
                 ctx.Response.StatusCode = StatusCodes.Status400BadRequest;
                 ctx.Response.ContentType = "application/json";
                 var payload = new

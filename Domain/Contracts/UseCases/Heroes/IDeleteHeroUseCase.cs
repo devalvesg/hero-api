@@ -2,6 +2,6 @@
 {
     public interface IDeleteHeroUseCase
     {
-        Task DeleteHero(long heroId);
+        Task DeleteHero(int heroId);
     }
 }

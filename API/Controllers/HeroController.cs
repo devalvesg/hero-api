@@ -24,20 +24,20 @@ namespace API.Controllers
             return Ok(_mapper.Map<HeroResponseObject[]>(await _getHeroesUseCase.GetHeroes()));
         }
 
-        [HttpGet]
-        public virtual async Task<IActionResult> GetHeroById([FromQuery] long heroId)
+        [HttpGet, Route("/{heroId}")]
+        public virtual async Task<IActionResult> GetHeroById([FromRoute] int heroId)
         {
-            return Ok(_mapper.Map<HeroResponseObject[]>(await _getHeroByIdUseCase.GetHeroById(heroId)));
+            return Ok(_mapper.Map<HeroResponseObject>(await _getHeroByIdUseCase.GetHeroById(heroId)));
         }
 
-        [HttpPut]
-        public virtual async Task<IActionResult> UpdateHero([FromBody] HeroRequestObject request)
+        [HttpPut, Route("/{heroId}")]
+        public virtual async Task<IActionResult> UpdateHero([FromBody] HeroRequestObject request, [FromRoute] int heroId)
         {
-            return Ok(_mapper.Map<HeroResponseObject[]>(await _updateHeroUseCase.UpdateHero(_mapper.Map<HeroEntity>(request))));
+            return Ok(_mapper.Map<HeroResponseObject>(await _updateHeroUseCase.UpdateHero(_mapper.Map<HeroEntity>(request), heroId)));
         }
 
-        [HttpDelete]
-        public virtual async Task<IActionResult> DeleteHero([FromQuery] long heroId)
+        [HttpDelete, Route("/{heroId}")]
+        public virtual async Task<IActionResult> DeleteHero([FromRoute] int heroId)
         {
             await _deleteHeroUseCase.DeleteHero(heroId);
             return Ok();

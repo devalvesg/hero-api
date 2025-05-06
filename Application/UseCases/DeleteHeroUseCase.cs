@@ -7,7 +7,7 @@ namespace Application.UseCases
 {
     public class DeleteHeroUseCase(IHeroDbContext _context) : IDeleteHeroUseCase
     {
-        public async Task DeleteHero(long heroId)
+        public async Task DeleteHero(int heroId)
         {
             var hero = await _context.Heroes.Where(x => x.Id == heroId && !x.Deleted).FirstOrDefaultAsync() ?? throw new CustomException("Hero not found, please type valid id");
 

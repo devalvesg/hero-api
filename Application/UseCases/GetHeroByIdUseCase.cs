@@ -8,9 +8,9 @@ namespace Application.UseCases
 {
     public class GetHeroByIdUseCase(IHeroDbContext _context) : IGetHeroByIdUseCase
     {
-        public async Task<HeroEntity> GetHeroById(long heroId)
+        public async Task<HeroEntity> GetHeroById(int heroId)
         {
-            return await _context.Heroes.Where(x => x.Id == heroId && !x.Deleted).Include(h => h.HeroSuperPowers).ThenInclude(ti => ti.SuperPower)
+            return await _context.Heroes.Where(x => x.Id == heroId && ! x.Deleted).Include(h => h.HeroSuperPowers).ThenInclude(ti => ti.SuperPower)
                 .FirstOrDefaultAsync() ?? throw new CustomException("Hero not found, please type valid id");
         }
     }

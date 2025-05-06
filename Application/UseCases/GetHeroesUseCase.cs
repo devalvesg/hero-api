@@ -9,7 +9,7 @@ namespace Application.UseCases
     {
         public async Task<HeroEntity[]> GetHeroes()
         {
-            return await _context.Heroes.ToArrayAsync();
+            return await _context.Heroes.Where(x => !x.Deleted).ToArrayAsync();
         }
     }
 }

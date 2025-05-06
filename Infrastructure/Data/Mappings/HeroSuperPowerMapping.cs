@@ -29,6 +29,16 @@ namespace Infrastructure.Data.Mappings
 
             entityBuilder.HasIndex(t => t.SuperPowerId)
                 .IsClustered(false);
+
+            entityBuilder.HasOne(hsp => hsp.Hero)
+                .WithMany(h => h.HeroSuperPowers)
+                .HasForeignKey(hsp => hsp.HeroId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entityBuilder.HasOne(hsp => hsp.SuperPower)
+                .WithMany(sp => sp.HeroSuperPowers)
+                .HasForeignKey(hsp => hsp.SuperPowerId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

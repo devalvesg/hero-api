@@ -20,6 +20,9 @@ namespace Infrastructure
 
             services.TryAddScoped<ICreateHeroUseCase, CreateHeroUseCase>();
             services.TryAddScoped<IGetHeroesUseCase, GetHeroesUseCase>();
+            services.TryAddScoped<IGetHeroByIdUseCase, GetHeroByIdUseCase>();
+            services.TryAddScoped<IUpdateHeroUseCase, UpdateHeroUseCase>();
+            services.TryAddScoped<IDeleteHeroUseCase, DeleteHeroUseCase>();
 
             return services;
         }

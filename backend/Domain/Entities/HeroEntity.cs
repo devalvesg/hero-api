@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Entities
 {
     public class HeroEntity
     {
@@ -10,5 +12,9 @@
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
         public virtual List<HeroSuperPowerEntity> HeroSuperPowers { get; set; }
+        [NotMapped]
+        public virtual List<SuperPowerEntity> SuperPowers { get; set; } = new List<SuperPowerEntity>();
+        [NotMapped]
+        public virtual List<int> SuperPowerIds { get; set; }
     }
 }

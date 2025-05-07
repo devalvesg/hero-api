@@ -17,9 +17,18 @@ namespace Application.UseCases
             }
 
             hero.Id = heroId;
-            _context.Heroes.Update(hero);
+
+            var existsHeroName= await _context.Heroes.AnyAsync(x => x.HeroName.ToLower() == hero.HeroName.ToLower());
+
+            if (existsHeroName)
+            {
+                throw new CustomException("Hero name already exists");
+            }
+
+            var heroUpdated = _context.Heroes.Update(hero).Entity;
 
             await _context.SaveChangesAsync(cancellationToken: CancellationToken.None);
+
             return hero;
         }
     }

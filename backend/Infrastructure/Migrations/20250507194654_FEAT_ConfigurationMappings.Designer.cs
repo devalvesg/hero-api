@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(HeroDbContext))]
-    partial class HeroDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250507194654_FEAT_ConfigurationMappings")]
+    partial class FEAT_ConfigurationMappings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +77,9 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("HeroId")
                         .HasColumnType("int");
@@ -84,11 +89,19 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Deleted");
+
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("Deleted"), false);
+
                     b.HasIndex("HeroId");
+
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("HeroId"), false);
 
                     b.HasIndex("SuperPowerId");
 
-                    b.ToTable("HeroSuperPowerEntity");
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("SuperPowerId"), false);
+
+                    b.ToTable("HeroSuperPowers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.SuperPowerEntity", b =>
@@ -100,19 +113,27 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("SuperPower")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("SuperPowerEntity");
+                    b.HasIndex("Deleted");
+
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex("Deleted"), false);
+
+                    b.ToTable("SuperPowers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.HeroSuperPowerEntity", b =>

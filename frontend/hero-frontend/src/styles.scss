@@ -1,0 +1,88 @@
+@import './styles/variables.scss';
+@import "primeicons/primeicons.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: #f5f5f5;
+  color: $color-text;
+  line-height: 1.6;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+  border: none;
+  background: $color-primary;
+  color: $color-bg;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.modal{
+  background-color: #ffffff !important;
+  padding: 30px;
+  border-radius: 20px !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px -1px, rgba(0, 0, 0, 0.06) 0px 0px 2px -1px !important;
+  position: fixed !important;
+  top: 50%     !important;
+  left: 50%    !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.modal .p-dialog-header .p-dialog-title{
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal .p-dialog-content{
+  overflow: unset !important;
+}
+
+.form-container{
+  padding: 25px 10px;
+}
+
+.form-container form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+  -webkit-appearance: none;
+  
+}
+input[type=number] { 
+ -moz-appearance: textfield;
+ appearance: textfield;
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.p-datepicker {
+  width: 100%;
+}
+
+.datepicker .p-datepicker-input{
+  background-color: white;
+  color: black;
+}

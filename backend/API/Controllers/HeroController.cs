@@ -24,19 +24,19 @@ namespace API.Controllers
             return Ok(_mapper.Map<HeroResponseObject[]>(await _getHeroesUseCase.GetHeroes()));
         }
 
-        [HttpGet, Route("/{heroId}")]
+        [HttpGet, Route("{heroId}")]
         public virtual async Task<IActionResult> GetHeroById([FromRoute] int heroId)
         {
             return Ok(_mapper.Map<HeroResponseObject>(await _getHeroByIdUseCase.GetHeroById(heroId)));
         }
 
-        [HttpPut, Route("/{heroId}")]
+        [HttpPut, Route("{heroId}")]
         public virtual async Task<IActionResult> UpdateHero([FromBody] HeroRequestObject request, [FromRoute] int heroId)
         {
             return Ok(_mapper.Map<HeroResponseObject>(await _updateHeroUseCase.UpdateHero(_mapper.Map<HeroEntity>(request), heroId)));
         }
 
-        [HttpDelete, Route("/{heroId}")]
+        [HttpDelete, Route("{heroId}")]
         public virtual async Task<IActionResult> DeleteHero([FromRoute] int heroId)
         {
             await _deleteHeroUseCase.DeleteHero(heroId);

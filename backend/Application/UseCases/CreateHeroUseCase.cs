@@ -17,7 +17,25 @@ namespace Application.UseCases
                 throw new CustomException("Hero name already exists");
             }
 
+            var superPowers = _context.SuperPower.Where(w => hero.SuperPowerIds.Contains(w.Id)).Select(s => s).ToList();
+
             await _context.Heroes.AddAsync(hero, CancellationToken.None);
+
+            await _context.SaveChangesAsync(CancellationToken.None);
+
+            foreach (var sp in superPowers)
+            {
+                await _context.HeroSuperPower.AddAsync(new HeroSuperPowerEntity()
+                {
+                    HeroId = hero.Id,
+                    SuperPowerId = sp.Id
+                });
+                hero.SuperPowers.Add(new SuperPowerEntity()
+                {
+                    Description = sp.Description,
+                    SuperPower = sp.SuperPower
+                });
+            }
 
             await _context.SaveChangesAsync(CancellationToken.None);
 

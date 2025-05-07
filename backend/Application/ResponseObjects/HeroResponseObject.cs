@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.ResponseObjects
 {
@@ -11,5 +12,6 @@ namespace Application.ResponseObjects
         public DateTime? Birthday { get; set; }
         public decimal Height { get; set; }
         public decimal Weight { get; set; }
+        public virtual List<SuperPowerEntity> SuperPowers { get; set; }
     }
 }

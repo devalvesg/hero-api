@@ -16,5 +16,6 @@ namespace Application.RequestObjects
         [Required(ErrorMessage = "Weight is required")]
         [Range(0.01, 9999.99, ErrorMessage = "Weight must be greater than zero.")]
         public decimal? Weight { get; set; }
+        public virtual List<int> SuperPowerIds { get; set; }
     }
 }

@@ -1,0 +1,44 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .label {
+    position: relative;
+    display: block;
+    display: flex;
+    border-radius: 6px;
+    border: 1px solid #373737;
+    padding: 10px 8px 10px 10px;
+    text-align: left;
+    min-width: 200px;
+    transition: border-color 0.2s;
+
+    .icon {
+      position: absolute;
+      top: 53%;
+      right: 0;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease;
+      color: $color-primary;
+    }
+  
+    .input {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      color: #373737;
+      font-size: 16px;
+      width: 100%;
+    }
+  }
+  
+  .label:focus-within {
+    border-color: #00cc66; 
+  }

@@ -1,0 +1,91 @@
+<div class="form-container">
+  <form #f="ngForm">
+    <div class="row">
+      <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+        <label class="label">
+          <span class="icon">
+            <i
+              class="fa-solid fa-user w-6 h-6 text-gray-800 dark:text-white"
+            ></i>
+          </span>
+          <input
+            type="text"
+            maxlength="120"
+            class="input"
+            placeholder="Nome"
+            name="name"
+            [(ngModel)]="entity.name"
+            autocomplete="off"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+        <label class="label">
+          <span class="icon">
+            <i
+              class="fa-solid fa-mask w-6 h-6 text-gray-800 dark:text-white"
+            ></i>
+          </span>
+          <input
+            type="text"
+            class="input"
+            maxlength="120"
+            name="heroName"
+            placeholder="Nome do Herói"
+            [(ngModel)]="entity.heroName"
+            autocomplete="off"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+        <label class="label">
+          <span class="icon">
+            <i
+              class="fa-solid fa-weight-hanging w-6 h-6 text-gray-800 dark:text-white"
+            ></i>
+          </span>
+          <input
+            type="number"
+            class="input"
+            placeholder="Peso"
+            name="weight"
+            [(ngModel)]="entity.weight"
+            autocomplete="off"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+        <label class="label">
+          <span class="icon">
+            <i
+              class="fa-solid fa-ruler-vertical w-6 h-6 text-gray-800 dark:text-white"
+            ></i>
+          </span>
+          <input
+            type="text"
+            class="input"
+            placeholder="Altura"
+            name="height"
+            [(ngModel)]="entity.height"
+            autocomplete="off"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-xs-12 col-md-12 col-lg-12">
+        <p-datepicker [(ngModel)]="entity.birthday" class="datepicker input" placeholder="Data de aniversário"/>
+      </div>
+    </div>
+  </form>
+</div>
